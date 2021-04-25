@@ -3,6 +3,7 @@ const pwLowerVal = document.getElementById('pwLower')
 const pwNumberVal = document.getElementById('pwNumber')
 const pwUpperVal = document.getElementById('pwUpper')
 const pwSpecialVal = document.getElementById('pwSpecial')
+const passwordDisplay = document.getElementById('passwordDisplay')
 
 const form = document.getElementById('pwGenform')
 
@@ -21,6 +22,7 @@ form.addEventListener('submit', e => {
     const pwUpper = pwUpperVal.checked
     const pwSpecial = pwSpecialVal.checked
     const password = generatePassword(pwLength, pwLower, pwNumber, pwUpper, pwSpecial)
+    passwordDisplay.innerText = password
 })
 
 function generatePassword(pwLength, pwLower, pwUpper, pwSpecial) {
@@ -31,11 +33,9 @@ function generatePassword(pwLength, pwLower, pwUpper, pwSpecial) {
     
     const pwCharacters = []
     for (let i = 0; i < pwLength; i++) {
-        const character = charCodes[Math.floor(Math.random() * pwLength)]
-        pwCharacters.push(character)
+        const characterCode = charCodes[Math.floor(Math.random() * pwLength)]
+        pwCharacters.push(String.fromCharCode(characterCode))
     }
-    
-    console.log(UP_CHARCODES)
 }
 
 function arrayFromLowToHigh(low, high) {
